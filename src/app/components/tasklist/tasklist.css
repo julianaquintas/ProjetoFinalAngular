@@ -1,0 +1,14 @@
+div {
+    margin: 10px;
+    padding: 5px;
+}
+
+.list-tools {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-post {
+    border-style: groove;
+}
+

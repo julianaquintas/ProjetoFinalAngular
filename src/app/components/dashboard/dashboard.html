@@ -1,0 +1,44 @@
+<div>
+    <div class="highlights">
+        <div class="priority-tasks">
+            <h3>Top priority tasks</h3>
+            <ul>
+                @for (task of priorityTasks; track task.description)
+                {
+                    <li>{{task.description}} for {{task.subject.name}}</li>
+                }   
+                @empty
+                {
+                    <p>There are no high priority tasks right now</p>
+                }
+            </ul>
+        </div>
+        <div class="late-tasks">
+            <h3>Due tasks</h3>
+            <ul>
+                @for (task of dueTasks; track task.description)
+                {
+                    <li>{{task.description}} for {{task.subject.name}}</li>
+                }    
+                @empty
+                {
+                    <p> There are no late tasks, yay!</p>
+                }           
+            </ul>
+        </div>
+        <div class="kpis">
+            <div>
+                <p>KP1</p>
+            </div>
+            <div>
+                <p>KP1</p>
+            </div>
+            <div>
+                <p>KP1</p>
+            </div>
+            <div>
+                <p>KP1</p>
+            </div>
+        </div>
+    </div>
+</div>

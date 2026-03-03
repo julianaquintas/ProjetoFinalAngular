@@ -1,0 +1,12 @@
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: pink;
+}
+
+.options-btn {
+    height: 35px;
+    margin-top: auto;
+    margin-bottom: auto;
+}

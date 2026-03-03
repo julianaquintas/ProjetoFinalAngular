@@ -1,0 +1,28 @@
+<!-- Task {
+  id: number;
+  description: string;
+  subject: TaskSubject;
+  dueDate: Date;
+  priority: TaskPriority;
+  done: boolean;
+} -->
+
+<div class="list-tools">
+  <button>Add Task</button>
+  <select name="Subjects" id="subjects">
+    <option value="all">All</option>
+    @for (subject of subjects; track subject.name)
+    {
+      <option (value)="subject.name">{{subject.name}}</option>
+    }
+  </select>
+</div>
+  @for (task of tasks; track task.description) {
+    <div class="task-post">
+      <input type="checkbox" id="task-done" name="task-done" /><label for="scales">{{task.description}}</label>
+      <p>Subject: {{task.subject.name}}</p>
+      <p>Due: {{task.dueDate}}</p>
+      <p>Priority: {{task.priority}}</p>
+    </div>
+  }
+

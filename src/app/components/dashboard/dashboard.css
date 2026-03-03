@@ -1,0 +1,22 @@
+.kpis {
+    display: flex;
+    flex-direction: column;
+    justify-content:baseline
+}
+.kpis div {
+    width: 100%;
+    padding: 1px !important;
+}
+
+.highlights {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.highlights div {
+    padding: 10px 5px;
+    background-color: rgba(255, 0, 0, 0.285);
+    width: auto;
+    min-width: 25%;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+}

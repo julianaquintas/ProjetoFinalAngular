@@ -1,0 +1,11 @@
+<h2>Your subjects</h2>
+
+<button>Add Subject</button>
+@for (subject of subjects; track subject)
+{
+    <div>
+        <p>Subject: {{subject.name}}</p>
+        <p>Credits: {{subject.credits}}</p>
+        <button>Edit</button><button>Delete</button>
+    </div>
+}
