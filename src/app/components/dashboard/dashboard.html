@@ -1,3 +1,4 @@
+<app-header [titulo]="'Tarefas de estudo'"></app-header>
 <div>
     <div class="highlights">
         <div class="priority-tasks">
@@ -41,4 +42,9 @@
             </div>
         </div>
     </div>
+    <div>
+        <button routerLink="/tasklist">Ver todas as tarefas</button>
+    </div>
+    
 </div>
+<router-outlet />

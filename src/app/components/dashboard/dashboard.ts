@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import {Task, TaskPriority, getDefaultTasks } from '../../models/task';
+import { Header } from '../header/header';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [Header, RouterOutlet, RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

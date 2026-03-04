@@ -1,12 +1,4 @@
-<!-- Task {
-  id: number;
-  description: string;
-  subject: TaskSubject;
-  dueDate: Date;
-  priority: TaskPriority;
-  done: boolean;
-} -->
-
+<app-header [titulo]="'Task list'"></app-header> 
 <div class="list-tools">
   <button>Add Task</button>
   <select name="Subjects" id="subjects">
@@ -17,7 +9,7 @@
     }
   </select>
 </div>
-  @for (task of tasks; track task.description) {
+  @for (task of loadTasks(); track task.description) {
     <div class="task-post">
       <input type="checkbox" id="task-done" name="task-done" /><label for="scales">{{task.description}}</label>
       <p>Subject: {{task.subject.name}}</p>
