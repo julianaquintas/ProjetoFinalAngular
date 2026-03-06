@@ -1,0 +1,13 @@
+<app-header [titulo]="'Task'"></app-header> 
+  <div class="task-post">
+    <input type="checkbox" id="task-done-{{task.id}}" [checked]="task.done" (change)="onTaskDoneChange($event, task)"/>
+<label [for]="'task-done-' + task.id">{{task.description}}</label>
+    <p>Subject: {{task.subject.name}}</p>
+    <p>Due: {{task.dueDate |  date:'fullDate' }}</p>
+    <p>Priority: <span [class]="task.priority.toLowerCase() + '-priority'">{{task.priority}}</span></p>
+    <!-- eu sei que o enunciado pedia para usar [ngClass], mas assim fica tudo numa só linha-->
+    <button>Edit</button><button (click)="deleteTask()">Delete</button>
+    <button [routerLink]="'/tasklist'">Return to list</button>
+  </div>
+
+

@@ -1,20 +1,22 @@
 <app-header [titulo]="'Task list'"></app-header> 
 <div class="list-tools">
-  <button>Add Task</button>
-  <select name="Subjects" id="subjects">
-    <option value="all">All</option>
+  <button [routerLink]="'/add-task'">Create new Task</button>
+  <select #subjectSelect (change)="onSubjectChange(subjectSelect.value)">
+    <option value="All">All</option>
     @for (subject of subjects; track subject.name)
     {
       <option (value)="subject.name">{{subject.name}}</option>
     }
+    <option value="Arquived">Archived</option>
   </select>
 </div>
   @for (task of loadTasks(); track task.description) {
     <div class="task-post">
-      <input type="checkbox" id="task-done" name="task-done" /><label for="scales">{{task.description}}</label>
+      <p>{{task.description}}<p>
       <p>Subject: {{task.subject.name}}</p>
-      <p>Due: {{task.dueDate}}</p>
-      <p>Priority: {{task.priority}}</p>
+      <p>Due: {{task.dueDate | date:'fullDate' }}</p>
+      <button [routerLink]="['/detail', task.id]">More Details</button>
     </div>
   }
+  <button [routerLink]="'/dashboard'">Return to dashboard</button>
 

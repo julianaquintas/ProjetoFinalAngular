@@ -1,0 +1,12 @@
+.low-priority {
+    color: inherit;
+}
+
+.high-priority {
+    color: rgb(196, 3, 3);
+}
+
+.medium-priority {
+    color: rgb(255, 221, 0)
+}
+

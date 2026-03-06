@@ -1,0 +1,34 @@
+
+<form [formGroup]="form" id="add-form">
+    <input formControlName="description" type="text" placeholder="Description">
+        @if (form.get('nome')?.invalid && form.get('nome')?.touched)
+        {
+            <p>Please add a description to your task!</p>
+        }
+    <br>
+    <select formControlName="subject" id="subjects">
+        @for (subject of subjects; track subject.name)
+        {
+            <option (value)="subject.name">{{subject.name}}</option>
+        }
+    </select>
+    <br>
+    <mat-form-field class="example-full-width" >
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" matInput [min]="startDate" formControlName="dueDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker [startAt]="startDate" ></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <select formControlName="priority" id="priority">
+        @for (priority of priorities; track priority)
+        {
+            <option (value)="priority">{{priority}}</option>
+        }
+    </select>
+    <br>
+    <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Entrar</button>
+</form>

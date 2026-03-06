@@ -8,9 +8,9 @@ export interface Task {
 }
 
 export enum TaskPriority {
-    LOW,
-    MEDIUM,
-    HIGH
+    LOW = "Low",
+    MEDIUM = "Medium",
+    HIGH = "High"
 }
 
 export interface TaskSubject {
