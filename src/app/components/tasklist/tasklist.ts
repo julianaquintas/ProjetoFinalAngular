@@ -13,7 +13,6 @@ import { DatePipe } from '@angular/common';
 })
 
 export class Tasklist {
- // tasks: Task[] = [];
   subjects:TaskSubject[] = getDefaultSubjects();
   selectedSubject: string = "All";
   constructor(private dataService: DataServices) {

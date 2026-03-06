@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task, TaskSubject } from "../models/task";
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class DataServices {
 
    public getTasks():Task[]
   {
-    const savedData = localStorage.getItem('tasks'); //TODO: trocar 'tasks' por uma constante
+    if(window.localStorage === undefined || window === undefined)
+      return [];
+
+    const savedData = window?.localStorage.getItem('tasks'); //TODO: trocar 'tasks' por uma constante
 
     if(savedData === null)
         return [];
@@ -57,6 +61,11 @@ export class DataServices {
   private saveTasks(tasks:Task[])
   {
     let jsonData:string = JSON.stringify(tasks);
+    if(window.localStorage === undefined)
+    {
+      alert("Error: could not save the task");
+      return;
+    }
      window.localStorage.setItem('tasks', jsonData);   
   }
 /*

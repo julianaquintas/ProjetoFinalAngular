@@ -4,26 +4,26 @@
         <div class="priority-tasks">
             <h3>Top priority tasks</h3>
             <ul>
-                @for (task of priorityTasks; track task.description)
+                @for (task of loadPriorityTasks(); track task.description)
                 {
                     <li>{{task.description}} for {{task.subject.name}}</li>
                 }   
                 @empty
                 {
-                    <p>There are no high priority tasks right now</p>
+                    <p>Relax, there are no high priority tasks right now.</p>
                 }
             </ul>
         </div>
         <div class="late-tasks">
-            <h3>Due tasks</h3>
+            <h3>Tasks due today</h3>
             <ul>
-                @for (task of dueTasks; track task.description)
+                @for (task of loadDueTasks(); track task.description)
                 {
                     <li>{{task.description}} for {{task.subject.name}}</li>
                 }    
                 @empty
                 {
-                    <p> There are no late tasks, yay!</p>
+                    <p> There are no late tasks, you're doing great!</p>
                 }           
             </ul>
         </div>
