@@ -6,6 +6,7 @@ import { Taskform } from './components/taskform/taskform';
 import { Detail } from './components/detail/detail';
 
 export const routes: Routes = [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     {path: 'tasklist', component: Tasklist},
     {path: 'options', component: Options},
     {path: 'dashboard',component: Dashboard},

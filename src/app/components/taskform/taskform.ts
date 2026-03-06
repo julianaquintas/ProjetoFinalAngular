@@ -8,12 +8,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { DataServices } from '../../services/data-services';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-taskform',
   providers: [provideNativeDateAdapter()],
-  imports: [ReactiveFormsModule, Header, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatIconModule],
+  imports: [ReactiveFormsModule, Header, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatIconModule, RouterModule, RouterLink],
   templateUrl: './taskform.html',
   styleUrl: './taskform.css',
 })

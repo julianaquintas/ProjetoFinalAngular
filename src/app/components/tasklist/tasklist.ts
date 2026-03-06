@@ -23,12 +23,12 @@ export class Tasklist {
   loadTasks() : Task[]
   {
     console.log(this.selectedSubject);
-    let _tasks = this.dataService.getTasks().filter(t => t.done === false)
+    let _tasks = this.dataService.getTasks()
 
     if (this.selectedSubject === "Archived")
       _tasks = _tasks.filter(t => t.done);
     else if (this.selectedSubject !== "All")
-      _tasks = _tasks.filter(t => t.subject.name === this.selectedSubject);
+      _tasks = _tasks.filter(t => t.subject.name === this.selectedSubject && t.done === false);
 
     return _tasks;
   }

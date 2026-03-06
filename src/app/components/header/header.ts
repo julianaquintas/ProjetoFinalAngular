@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink,RouterModule ],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -23,10 +24,9 @@ export class Header implements OnInit, OnDestroy{
 
   ngOnInit()
   {
-    console.log('Header component inicializado?');
   }
 
   ngOnDestroy(): void {
-    console.log("Header componenet desttuído");
+
   }
 }

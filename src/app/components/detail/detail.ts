@@ -34,6 +34,7 @@ export class Detail {
   }
 
   onTaskDoneChange(event: Event, task: Task) {
+      console.log("onTaskDoneChanged called!");
       const checked = (event.target as HTMLInputElement).checked;
       this.dataService.changeTaskStatus(this.taskId, checked);
     }

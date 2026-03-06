@@ -1,4 +1,4 @@
-
+<app-header [titulo]="'Create new task'"></app-header> 
 <form [formGroup]="form" id="add-form">
     <input formControlName="description" type="text" placeholder="Description">
         @if (form.get('nome')?.invalid && form.get('nome')?.touched)
@@ -31,4 +31,5 @@
     </select>
     <br>
     <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Entrar</button>
+    <button [routerLink]="'/dashboard'">Cancel</button>
 </form>
