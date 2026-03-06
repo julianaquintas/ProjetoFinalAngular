@@ -35,4 +35,20 @@ export class Dashboard {
     const today =  new Date().toDateString();
      return today === new Date(date).toDateString();
   }
+
+  getCompletionPercentage() : string {
+    const allTasks = this.dataService.getTasks();
+    const doneTasksQt:number = allTasks.filter(t => t.done).length;
+
+    return ((doneTasksQt / allTasks.length) * 100).toFixed(2) + "%"
+  }
+
+  // getSubjectWithMostTasks():
+  //   {
+  //     this.dataService.getTasks().filter()
+  //   }
+  
+
+  // total de tarefas, nr tarefas completas
+  //nr of late tasks, Subject with most tasks
 }
