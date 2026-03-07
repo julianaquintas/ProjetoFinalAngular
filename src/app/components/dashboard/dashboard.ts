@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Task, TaskPriority, getDefaultTasks } from '../../models/task';
+import {Task, TaskPriority } from '../../models/task';
 import { Header } from '../header/header';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { DataServices } from '../../services/data-services';
@@ -24,10 +24,7 @@ export class Dashboard {
 
   loadDueTasks(): Task[]
   {
-
     let tasks = this.dataService.getTasks().filter(t => this.isToday(t.dueDate) && t.done === false);
-    console.log("number of tasks: " + tasks.length);
-
     return tasks;
   }
 
@@ -43,11 +40,10 @@ export class Dashboard {
     return ((doneTasksQt / allTasks.length) * 100).toFixed(2) + "%"
   }
 
-  // getSubjectWithMostTasks():
-  //   {
-  //     this.dataService.getTasks().filter()
-  //   }
-  
+  // getSubjectWithMostDoneTasks(): string
+  // {
+  //   let topSubject = Sub
+  // }
 
   // total de tarefas, nr tarefas completas
   //nr of late tasks, Subject with most tasks

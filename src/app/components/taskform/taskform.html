@@ -1,7 +1,7 @@
 <app-header [titulo]="'Create new task'"></app-header> 
 <form [formGroup]="form" id="add-form">
     <input formControlName="description" type="text" placeholder="Description">
-        @if (form.get('nome')?.invalid && form.get('nome')?.touched)
+        @if (form.get('name')?.invalid && form.get('name')?.touched)
         {
             <p>Please add a description to your task!</p>
         }
@@ -30,6 +30,6 @@
         }
     </select>
     <br>
-    <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Entrar</button>
+    <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
     <button [routerLink]="'/dashboard'">Cancel</button>
 </form>

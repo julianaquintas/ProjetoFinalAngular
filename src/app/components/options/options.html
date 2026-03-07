@@ -1,7 +1,6 @@
-<h2>Your subjects</h2>
-
-<button>Add Subject</button>
-@for (subject of subjects; track subject)
+<app-header [titulo]="'Options'"></app-header> 
+<button [routerLink]="'/add-subject'">Add Subject</button>
+@for (subject of subjects; track subject.name)
 {
     <div>
         <p>Subject: {{subject.name}}</p>

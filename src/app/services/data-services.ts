@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Task, TaskSubject } from "../models/task";
-import { UntypedFormBuilder } from '@angular/forms';
-
 @Injectable({
   providedIn: 'root',
 })
 export class DataServices {
   addTask(newTask:Task)
   {
-    console.log("Save task called!")
      let tasks:Task[] = this.getTasks();
-     tasks.unshift(newTask) //TODO:  nao sei se deixo unshift ou faço push
+     tasks.unshift(newTask);
      this.saveTasks(tasks);
   }
 
-   public getTasks():Task[]
+  addSubject(newSubject:TaskSubject)
   {
-    if(window.localStorage === undefined || window === undefined)
-      return [];
+    console.log("add Subject called")
+     let subjects:TaskSubject[] = this.getSubjects();
+     subjects.unshift(newSubject);
+     this.saveSubjects(subjects);
+  }
 
-    const savedData = window?.localStorage.getItem('tasks'); //TODO: trocar 'tasks' por uma constante
+  public getTasks():Task[]
+  {
+    let savedData:string|null = null;
+    if(typeof globalThis.localStorage !== "undefined")
+      savedData = globalThis.localStorage.getItem('tasks'); 
 
     if(savedData === null)
         return [];
@@ -32,13 +36,36 @@ export class DataServices {
       }
       catch 
       {
-        console.log("Could not load tasks"); // TODO: tratar o erro como deve ser
+        console.log("Could not load tasks");
         return [];
       }
     }
   }
 
-  public removeTask(id:Number)
+  public getSubjects():TaskSubject[]
+  {
+    let savedData:string | null = null;
+    if(typeof globalThis.localStorage !== "undefined")
+     savedData = globalThis.localStorage.getItem('subjects'); 
+
+    if(savedData === null)
+        return [];
+    else
+    {
+      try
+      {
+        let tasks:TaskSubject[] = JSON.parse(savedData);
+        return tasks;
+      }
+      catch 
+      {
+        console.log("Could not load subjects!"); 
+        return [];
+      }
+    }
+  }
+
+  public removeTask(id:number)
   {
     const tasks = this.getTasks();         
     const updatedTasks = tasks.filter(t => t.id !== id);
@@ -47,38 +74,37 @@ export class DataServices {
 
   public changeTaskStatus(id:number, done:boolean)
   {
-      // Se quiseres guardar no localStorage:
-  let tasks:Task[] = this.getTasks();
-  let taskToEdit = tasks.find(t => t.id === id);
-  if(taskToEdit) 
+    let tasks:Task[] = this.getTasks();
+    let taskToEdit = tasks.find(t => t.id === id);
+    if(taskToEdit) 
     {
       taskToEdit.done = done;
       this.saveTasks(tasks);
     }
-  
   }
 
   private saveTasks(tasks:Task[])
   {
     let jsonData:string = JSON.stringify(tasks);
-    if(window.localStorage === undefined)
+    if(typeof globalThis.localStorage === "undefined")
     {
       alert("Error: could not save the task");
       return;
     }
-     window.localStorage.setItem('tasks', jsonData);   
+    if(typeof globalThis.localStorage !== 'undefined')
+      globalThis.localStorage.setItem('tasks', jsonData);   
   }
-/*
-export function loadSubjects() {
-    return [];
-} */
 
-//createSubject()
-
-//saveSubject()
-
-//editSubject()
-
-//deleteSubject()
+  private saveSubjects(subjects:TaskSubject[])
+  {
+    let jsonData:string = JSON.stringify(subjects);
+    if(typeof localStorage === 'undefined')
+    {
+      alert("Error: could not save the task");
+      return;
+    }
+    else   
+      globalThis.localStorage.setItem('subjects', jsonData);   
+  }
 }
 

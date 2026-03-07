@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Task, TaskSubject, getDefaultSubjects, getDefaultTasks } from '../../models/task';
+import { Task, TaskSubject } from '../../models/task';
 import { DataServices } from '../../services/data-services';
 import { Header } from '../header/header';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -13,14 +13,16 @@ import { DatePipe } from '@angular/common';
 })
 
 export class Tasklist {
-  subjects:TaskSubject[] = getDefaultSubjects();
+  
   selectedSubject: string = "All";
   constructor(private dataService: DataServices) {
- 
-}
+    
+  }
+subjects!:TaskSubject[];
 
   loadTasks() : Task[]
   {
+    this.subjects = this.dataService.getSubjects();
     console.log(this.selectedSubject);
     let _tasks = this.dataService.getTasks()
 

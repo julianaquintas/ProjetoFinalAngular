@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { Task, getDefaultSubjects, TaskPriority, TaskSubject } from '../../models/task';
+import { Task, TaskPriority, TaskSubject } from '../../models/task';
 import { Header } from '../header/header';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -18,18 +18,21 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
   styleUrl: './taskform.css',
 })
 
-export class Taskform {
+export class Taskform  implements OnInit{
   constructor(private dataService: DataServices, private router: Router) {}
   readonly startDate = new Date();
-  subjects:TaskSubject[] = getDefaultSubjects();
   priorities = Object.values(TaskPriority);
+  subjects!:TaskSubject[];
   form = new FormGroup({
     description: new FormControl('', [Validators.required, Validators.minLength(3)]),
     subject: new FormControl(this.subjects[0].name, Validators.required), 
     dueDate:new FormControl(null, Validators.required),
     priority: new FormControl(this.priorities[0], Validators.required)
-  });
+    });
 
+  ngOnInit() {
+    this.subjects = this.dataService.getSubjects();
+  }
   onSubmit()
   {
     if(this.form.valid)
