@@ -5,6 +5,6 @@
     <div>
         <p>Subject: {{subject.name}}</p>
         <p>Credits: {{subject.credits}}</p>
-        <button>Edit</button><button>Delete</button>
+        <button (click)="deleteSubject(subject.name)">Delete</button>
     </div>
 }

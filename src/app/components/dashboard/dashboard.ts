@@ -22,6 +22,10 @@ export class Dashboard {
     return this.dataService.getTasks().filter(t => t.priority === TaskPriority.HIGH && t.done === false);
   }
 
+  thereAreSubjects(): boolean {
+    return this.dataService.getSubjects().length > 0;
+  }
+
   loadDueTasks(): Task[]
   {
     let tasks = this.dataService.getTasks().filter(t => this.isToday(t.dueDate) && t.done === false);
@@ -35,16 +39,18 @@ export class Dashboard {
 
   getCompletionPercentage() : string {
     const allTasks = this.dataService.getTasks();
-    const doneTasksQt:number = allTasks.filter(t => t.done).length;
+    if(allTasks.length === 0)
+      return "N/A";
 
-    return ((doneTasksQt / allTasks.length) * 100).toFixed(2) + "%"
+    const doneTasksQt:number = allTasks.filter(t => t.done).length;
+ return ((doneTasksQt / allTasks.length) * 100).toFixed(2) + "%"
   }
 
-  // getSubjectWithMostDoneTasks(): string
-  // {
-  //   let topSubject = Sub
-  // }
+  getDoneTasksTotal(): string {
+    return `${this.dataService.getTasks().filter(t => t.done).length}`
+  }
 
-  // total de tarefas, nr tarefas completas
-  //nr of late tasks, Subject with most tasks
+   getDoneIncompleteTotal(): string {
+    return `${this.dataService.getTasks().filter(t => !t.done).length}`
+  }
 }

@@ -1,22 +1,98 @@
-.kpis {
-    display: flex;
-    flex-direction: column;
-    justify-content:baseline
-}
-.kpis div {
-    width: 100%;
-    padding: 1px !important;
-}
-
+/* Container principal das seções de destaque */
 .highlights {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap; /* permite que boxes se reorganizem em telas pequenas */
+    gap: 15px; /* espaço entre as seções */
+    margin: 20px 0;
 }
 
+/* Cada bloco dentro de highlights */
 .highlights div {
-    padding: 10px 5px;
-    background-color: rgba(255, 0, 0, 0.285);
+    padding: 15px 10px;
+    background-color: rgba(255, 0, 0, 0.25);
     width: auto;
-    min-width: 25%;
-    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    min-width: 250px; /* mais consistente que 25% em telas pequenas */
+    flex: 1; /* deixa os blocos expandirem igualmente se houver espaço */
+    box-shadow: 5px 5px 7px rgba(33,33,33,0.7);
+    border-radius: 8px;
+}
+
+/* Cabeçalhos de cada bloco */
+.highlights h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #222;
+}
+
+/* Listas de tarefas */
+.highlights ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+}
+
+.highlights li {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #111;
+}
+
+/* Mensagens quando não há tarefas */
+.highlights p {
+    font-style: italic;
+    color: #333;
+    text-align: center;
+}
+
+/* KPIs section */
+.kpis {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    margin-top: 20px;
+}
+
+.kpis div {
+    width: 100%;
+    padding: 3px 5px !important;
+    margin-bottom: 5px;
+    background-color: rgba(0, 255, 0, 0.15);
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Botões gerais */
+button {
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Pequenas melhorias de layout para o container geral */
+div > div:last-child {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .highlights {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .highlights div {
+        min-width: 80%;
+    }
 }

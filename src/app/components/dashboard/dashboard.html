@@ -32,19 +32,24 @@
                 <p>Completion rate: {{getCompletionPercentage()}}</p>
             </div>
             <div>
-                <p>KP1</p>
+                <p>Number of completed tasks: {{getDoneTasksTotal()}}</p>
             </div>
             <div>
-                <p>KP1</p>
-            </div>
-            <div>
-                <p>KP1</p>
+                <p>Number of tasks to be done: {{getDoneIncompleteTotal()}}</p>
             </div>
         </div>
     </div>
     <div>
-        <button routerLink="/tasklist">Ver todas as tarefas</button>
-    </div>
-    
+        @if (thereAreSubjects())
+        {
+            <p></p>
+            <button routerLink="/tasklist">Ver todas as tarefas</button>
+        }
+        @else
+        {
+            <p>There are no subjects!</p>
+             <button routerLink="/add-subject">Add subjects</button>
+        }
+    </div>   
 </div>
 <router-outlet />

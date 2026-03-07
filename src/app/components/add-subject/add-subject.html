@@ -1,17 +1,22 @@
 <app-header [titulo]="'Create new subject'"></app-header> 
+
 <form [formGroup]="form" id="add-subject-form" (ngSubmit)="onSubmit()">
     <input formControlName="name" type="text" placeholder="Subject Name">
-        @if (form.get('name')?.invalid && form.get('name')?.touched)
-        {
-            <p>Please add a name to your your subject!</p>
-        }
-        @else if(nameIsTaken())
-        {
-            <p>Subject name is already taken!</p>
-        }
+    @if (form.get('name')?.invalid && form.get('name')?.touched)
+    {
+        <p>Please add a name to your subject!</p>
+    }
+    
+    @else if (nameIsTaken())
+    {
+        <p>Subject name is already taken!</p>
+    }
+    
     <br>
-    <input type="number" id="credits" name="Credits" min="1" max="160" />
+    
+    <input formControlName="credits" type="number" id="credits" name="credits" min="1" max="160" />
     <br>
-    <button type="button" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
-    <button [routerLink]="'/options'">Cancel</button>
+    
+    <button type="submit" [disabled]="form.invalid">Add</button>
+    <button type="button" [routerLink]="'/options'">Cancel</button>
 </form>
