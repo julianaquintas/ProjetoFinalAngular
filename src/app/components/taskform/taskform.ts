@@ -18,48 +18,48 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
   styleUrl: './taskform.css',
 })
 
-export class Taskform  implements OnInit{
+export class Taskform implements OnInit {
   constructor(private dataService: DataServices, private router: Router) {}
+
   readonly startDate = new Date();
   priorities = Object.values(TaskPriority);
-  subjects!:TaskSubject[];
-  form = new FormGroup({
-    description: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    subject: new FormControl(this.subjects[0].name, Validators.required), 
-    dueDate:new FormControl(null, Validators.required),
-    priority: new FormControl(this.priorities[0], Validators.required)
-    });
+  subjects: TaskSubject[] = [];
+  form!: FormGroup;
 
   ngOnInit() {
     this.subjects = this.dataService.getSubjects();
-  }
-  onSubmit()
-  {
-    if(this.form.valid)
-    {
-      const _description = this.form.get('description')?.value;
-      const _subjectName= this.form.get('subject')?.value;
-  
-      const _dueDate = this.form.get('dueDate')?.value;
-      const _priority = this.form.get('priority')?.value
-      const _subject: TaskSubject | undefined = this.subjects.find(x => x.name === _subjectName);
 
-      if(_description && _subject && _dueDate && _priority)
-      {
-        const newTask:Task = {
+    this.form = new FormGroup({
+      description: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      subject: new FormControl(this.subjects[0]?.name || '', Validators.required),
+      dueDate: new FormControl(null, Validators.required),
+      priority: new FormControl(this.priorities[0], Validators.required)
+    });
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      const _description = this.form.get('description')?.value;
+      const _subjectName = this.form.get('subject')?.value;
+      const _dueDate = this.form.get('dueDate')?.value;
+      const _priority = this.form.get('priority')?.value;
+
+      const _subject = this.subjects.find(x => x.name === _subjectName);
+
+      if (_description && _subject && _dueDate && _priority) {
+        const newTask: Task = {
           id: Date.now(),
           description: _description,
-          subject: _subject, 
-          dueDate: new Date(_dueDate), 
+          subject: _subject,
+          dueDate: new Date(_dueDate),
           priority: _priority as TaskPriority,
           done: false
-        }  
+        };
+
         this.dataService.addTask(newTask);
         this.router.navigate(['/tasklist']);
       }
-    }
-    else 
-    {
+    } else {
       alert("Please, fill the form correctly.");
     }
   }
