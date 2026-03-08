@@ -1,5 +1,5 @@
 <app-header [titulo]="'Options'"></app-header> 
-<button [routerLink]="'/add-subject'">Add Subject</button>
+<button [routerLink]="'/add-subject'" class="add-button">Add Subject</button>
 @for (subject of subjects; track subject.name)
 {
     <div class="subject-post">

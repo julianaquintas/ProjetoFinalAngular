@@ -60,6 +60,7 @@ p {
     pointer-events: none;
 }
 
+
 @media (max-width: 600px) {
     #add-subject-form {
         padding: 15px;

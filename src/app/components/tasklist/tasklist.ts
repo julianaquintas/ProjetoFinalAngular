@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task, TaskSubject } from '../../models/task';
 import { DataServices } from '../../services/data-services';
 import { Header } from '../header/header';
@@ -7,28 +7,32 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-tasklist',
-  imports: [Header, RouterOutlet, RouterLink, DatePipe],
+  imports: [Header, RouterLink, DatePipe],
   templateUrl: './tasklist.html',
   styleUrl: './tasklist.css',
 })
 
-export class Tasklist {
+export class Tasklist implements OnInit {
   
   selectedSubject: string = "All";
   constructor(private dataService: DataServices) {
     
   }
-subjects!:TaskSubject[];
+  subjects!:TaskSubject[];
+
+  ngOnInit(): void {
+    this.subjects = this.dataService.getSubjects();
+  }
 
   loadTasks() : Task[]
   {
     this.subjects = this.dataService.getSubjects();
-    console.log(this.selectedSubject);
     let _tasks = this.dataService.getTasks()
-
-    if (this.selectedSubject === "Archived")
+    if(this.selectedSubject === "All")
+     _tasks = _tasks.filter(t => t.done === false)
+    else if (this.selectedSubject === "Archived")
       _tasks = _tasks.filter(t => t.done);
-    else if (this.selectedSubject !== "All")
+    else
       _tasks = _tasks.filter(t => t.subject.name === this.selectedSubject && t.done === false);
 
     return _tasks;
@@ -38,4 +42,5 @@ subjects!:TaskSubject[];
     this.selectedSubject = subjectName;
     this.loadTasks();
   }
+  
 }

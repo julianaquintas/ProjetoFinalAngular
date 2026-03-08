@@ -1,7 +1,7 @@
 <app-header [titulo]="'Create new subject'"></app-header> 
 <form [formGroup]="form" id="add-subject-form" (ngSubmit)="onSubmit()">
     <label for="name">Subject name</label>
-    <input formControlName="name" type="text" placeholder="Subject Name">
+    <input formControlName="name" type="text" placeholder="Subject Name" maxLength="50">
     @if (form.get('name')?.invalid && form.get('name')?.touched)
     {
         <p>Please add a name to your subject!</p>
