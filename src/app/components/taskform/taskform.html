@@ -30,6 +30,8 @@
         }
     </select>
     <br>
-    <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
-    <button [routerLink]="'/dashboard'">Cancel</button>
+    <div>
+        <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
+        <button [routerLink]="'/dashboard'">Cancel</button>
+    </div>
 </form>
