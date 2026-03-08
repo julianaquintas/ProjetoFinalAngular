@@ -3,4 +3,5 @@ body {
     opacity: 0.8;
     background-image: radial-gradient(#7b6b7a 0.5px, #e5e5f7 0.5px);
     background-size: 10px 10px;
+    padding: auto 10px;
 }

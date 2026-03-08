@@ -2,7 +2,7 @@
 <button [routerLink]="'/add-subject'">Add Subject</button>
 @for (subject of subjects; track subject.name)
 {
-    <div>
+    <div class="subject-post">
         <p>Subject: {{subject.name}}</p>
         <p>Credits: {{subject.credits}}</p>
         <button (click)="deleteSubject(subject.name)">Delete</button>
