@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Header } from '../header/header';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Task } from '../../models/task';
@@ -13,16 +13,23 @@ import { Router } from '@angular/router';
   templateUrl: './detail.html',
   styleUrl: './detail.css',
 })
-export class Detail {
+export class Detail implements OnInit {
   taskId!: number;
- constructor(private route: ActivatedRoute, private dataService: DataServices, private router: Router) {}
+  private route = inject(ActivatedRoute);
+  private dataService = inject(DataServices);
+  private router= inject(Router);
+ constructor() {
+  this.route = inject(ActivatedRoute);
+  this.dataService = inject(DataServices);
+  this.router = inject(Router);
+ }
 
   task!:Task;
 
   ngOnInit() {
     this.taskId = Number(this.route.snapshot.paramMap.get('id'));
 
-    let _task = this.dataService.getTasks().find(x=> x.id === this.taskId)
+    const _task = this.dataService.getTasks().find(x=> x.id === this.taskId)
     if(_task)
         this.task = _task;
   }
@@ -33,7 +40,7 @@ export class Detail {
     this.router.navigate(['/tasklist']);
   }
 
-  onTaskDoneChange(event: Event, task: Task) {
+  onTaskDoneChange(event: Event) {
       console.log("onTaskDoneChanged called!");
       const checked = (event.target as HTMLInputElement).checked;
       this.dataService.changeTaskStatus(this.taskId, checked);

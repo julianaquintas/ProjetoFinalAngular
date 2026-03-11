@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header } from '../header/header';
 import { Router, RouterLink, RouterModule } from '@angular/router';
@@ -12,7 +12,14 @@ import { TaskSubject } from '../../models/task';
   styleUrl: './add-subject.css',
 })
 export class AddSubject {
-  constructor(private dataService: DataServices, private router: Router) {}
+  private dataService = inject(DataServices);
+  private router = inject(Router);
+
+  constructor() {
+    this.dataService = inject(DataServices);
+    this.router = inject(Router);
+  }
+  
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     credits: new FormControl(0, Validators.required)

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TaskSubject } from '../../models/task';
 import { Header } from '../header/header';
 import { DataServices } from '../../services/data-services';
 import { RouterLink, RouterModule, Router } from '@angular/router';
-import { NgPlural } from '@angular/common';
 
 @Component({
   selector: 'app-options',
@@ -12,7 +11,13 @@ import { NgPlural } from '@angular/common';
   styleUrl: './options.css',
 })
 export class Options implements OnInit {
-  constructor(private dataService: DataServices, private router: Router) {}
+
+  private dataService = inject(DataServices);
+  private router =  inject(Router);
+  constructor() {
+    this.dataService = inject(DataServices);
+    this.router = inject(Router);
+  }
   subjects!:TaskSubject[];
 
   ngOnInit() {

@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,  inject,  OnInit } from '@angular/core';
 import { Task, TaskSubject } from '../../models/task';
 import { DataServices } from '../../services/data-services';
 import { Header } from '../header/header';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -14,9 +14,10 @@ import { DatePipe } from '@angular/common';
 
 export class Tasklist implements OnInit {
   
-  selectedSubject: string = "All";
-  constructor(private dataService: DataServices) {
-    
+  private dataService = inject(DataServices);
+  selectedSubject = "All";
+  constructor() {
+    this.dataService = inject(DataServices);   
   }
   subjects!:TaskSubject[];
 

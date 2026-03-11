@@ -1,6 +1,6 @@
 <app-header [titulo]="'Task'"></app-header> 
   <div class="task-post">
-    <input type="checkbox" id="task-done" [checked]="task.done" (change)="onTaskDoneChange($event, task)"/>
+    <input type="checkbox" id="task-done" [checked]="task.done" (change)="onTaskDoneChange($event)"/>
     <label [for]="'task-done-' + task.id">{{task.description}}</label>
     <p>Subject: {{task.subject.name}}</p>
     <p>Due: {{task.dueDate |  date:'fullDate' }}</p>

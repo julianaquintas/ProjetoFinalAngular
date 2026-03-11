@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { RouterLink, RouterModule } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header implements OnInit, OnDestroy{
+export class Header{
   @Input() titulo!: string; // o ponto de exclamação indica que a variável vai ser inicializada depois
   @Output() logout = new EventEmitter<void>();
   @Output() utilizadorSelecionado = new EventEmitter<string>();
@@ -20,13 +20,5 @@ export class Header implements OnInit, OnDestroy{
   selecionar()
   {
     this.utilizadorSelecionado.emit("Ana");
-  }
-
-  ngOnInit()
-  {
-  }
-
-  ngOnDestroy(): void {
-
   }
 }
