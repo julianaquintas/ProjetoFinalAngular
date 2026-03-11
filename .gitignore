@@ -45,3 +45,5 @@ Thumbs.db
 
 # Environment variables
 /app/environments/
+src/environments/environment.development.ts
+src/environments/environment.ts

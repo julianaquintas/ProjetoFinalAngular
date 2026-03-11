@@ -14,10 +14,7 @@ import { DatePipe } from '@angular/common';
 
 export class Dashboard {
   private dataService = inject(DataServices)
-  constructor() {
-   this.dataService = inject(DataServices);
-  }
-  
+
   loadPriorityTasks() : Task[]
   {
     return this.dataService.getTasks().filter(t => t.priority === TaskPriority.HIGH && t.done === false);

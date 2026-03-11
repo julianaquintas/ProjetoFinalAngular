@@ -18,11 +18,7 @@ export class Detail implements OnInit {
   private route = inject(ActivatedRoute);
   private dataService = inject(DataServices);
   private router= inject(Router);
- constructor() {
-  this.route = inject(ActivatedRoute);
-  this.dataService = inject(DataServices);
-  this.router = inject(Router);
- }
+
 
   task!:Task;
 

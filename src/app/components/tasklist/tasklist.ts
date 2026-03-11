@@ -16,9 +16,7 @@ export class Tasklist implements OnInit {
   
   private dataService = inject(DataServices);
   selectedSubject = "All";
-  constructor() {
-    this.dataService = inject(DataServices);   
-  }
+  
   subjects!:TaskSubject[];
 
   ngOnInit(): void {

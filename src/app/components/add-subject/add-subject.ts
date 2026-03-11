@@ -14,11 +14,6 @@ import { TaskSubject } from '../../models/task';
 export class AddSubject {
   private dataService = inject(DataServices);
   private router = inject(Router);
-
-  constructor() {
-    this.dataService = inject(DataServices);
-    this.router = inject(Router);
-  }
   
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),

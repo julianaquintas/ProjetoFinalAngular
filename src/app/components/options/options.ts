@@ -14,10 +14,7 @@ export class Options implements OnInit {
 
   private dataService = inject(DataServices);
   private router =  inject(Router);
-  constructor() {
-    this.dataService = inject(DataServices);
-    this.router = inject(Router);
-  }
+  
   subjects!:TaskSubject[];
 
   ngOnInit() {
@@ -34,7 +31,7 @@ export class Options implements OnInit {
     else
     {
         this.dataService.deleteSubject(subjectName);
-        //this.router.navigate(['/options']);
+        this.router.navigate(['/options']);
         this.ngOnInit();
     }
     

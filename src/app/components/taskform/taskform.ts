@@ -22,11 +22,7 @@ export class Taskform implements OnInit {
 
   private dataService = inject(DataServices);
   private router = inject(Router)
-  constructor() {
-    this.dataService = inject(DataServices);
-    this.router = inject(Router);
-  }
-
+ 
   readonly startDate = new Date();
   priorities = Object.values(TaskPriority);
   subjects: TaskSubject[] = [];
