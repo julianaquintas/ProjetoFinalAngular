@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { Tasklist } from './components/tasklist/tasklist';
 import { Options } from './components/options/options';
 import { Dashboard } from './components/dashboard/dashboard';
+import { environment } from '../environments/environment.development';
+
 
 @Component({
   selector: 'app-root',
@@ -21,4 +23,14 @@ export class App {
   receber(nome:string) {
     alert("Utilizador selecionado: " + nome);
   }
+
 }
+async function loadUsers () {
+  const response = await fetch (environment.apiUrl + '/users');
+  const users = await response.json();
+
+  console.log(users)
+
+}
+
+loadUsers()
