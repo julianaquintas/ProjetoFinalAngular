@@ -26,7 +26,7 @@ export class Dashboard {
 
   loadDueTasks(): Task[]
   {
-    const tasks = this.dataService.getTasks().filter(t => this.isToday(t.dueDate) && t.done === false);
+    const tasks = this.dataService.getTasks().filter(t => this.isToday(t.due_date) && t.done === false);
     return tasks;
   }
 

@@ -1,8 +1,9 @@
 export interface Task {
   id: number;
   description: string;
-  subject: TaskSubject;
-  dueDate: Date;
+  subject_name: string;
+  created_at: Date
+  due_date: Date;
   priority: TaskPriority;
   done: boolean;
 }

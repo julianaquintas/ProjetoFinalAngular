@@ -25,12 +25,12 @@ export class App {
   }
 
 }
-async function loadUsers () {
-  const response = await fetch (environment.apiUrl + '/users');
-  const users = await response.json();
+// async function loadUsers () {
+//   const response = await fetch (environment.apiUrl + '/users');
+//   const users = await response.json();
 
-  console.log(users)
+//   console.log(users)
 
-}
+// }
 
 //loadUsers()

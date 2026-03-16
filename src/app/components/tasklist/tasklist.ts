@@ -32,7 +32,7 @@ export class Tasklist implements OnInit {
     else if (this.selectedSubject === "Archived")
       _tasks = _tasks.filter(t => t.done);
     else
-      _tasks = _tasks.filter(t => t.subject.name === this.selectedSubject && t.done === false);
+      _tasks = _tasks.filter(t => t.subject_name === this.selectedSubject && t.done === false);
 
     return _tasks;
   }

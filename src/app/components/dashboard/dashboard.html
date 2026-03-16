@@ -6,7 +6,7 @@
             <ul>
                 @for (task of loadPriorityTasks(); track task.description)
                 {
-                    <li>{{task.description}} for {{task.subject.name}}</li>
+                    <li>{{task.description}} for {{task.subject_name}}</li>
                 }   
                 @empty
                 {
@@ -19,7 +19,7 @@
             <ul>
                 @for (task of loadDueTasks(); track task.description)
                 {
-                    <li>{{task.description}} for {{task.subject.name}}</li>
+                    <li>{{task.description}} for {{task.subject_name}}</li>
                 }    
                 @empty
                 {

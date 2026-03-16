@@ -29,7 +29,7 @@ export class SupabaseService {
     return data as UserModel[];
   }
 
-   async adduSER(name:string, email:string, pass:string): Promise<UserModel | null> {
+   async addUser(name:string, email:string, pass:string): Promise<UserModel | null> {
     const { data, error } = await this.supabase
       .from('users')
       .insert([{ name, email, pass }])
@@ -42,7 +42,7 @@ export class SupabaseService {
     return data as UserModel;
   }
 
-  async updateTask(user: UserModel): Promise<UserModel | null> {
+  async updateUser(user: UserModel): Promise<UserModel | null> {
     const { data, error } = await this.supabase
       .from('users')
       .update({
@@ -60,7 +60,7 @@ export class SupabaseService {
     return data as UserModel;
   }
 
-  async deleteTask(id: string): Promise<boolean> {
+  async deleteUser(id: string): Promise<boolean> {
     const { error } = await this.supabase
       .from('tasks')
       .delete()
@@ -74,7 +74,7 @@ export class SupabaseService {
   }
 
 
-/*
+
   async getTasks(): Promise<Task[]> {
     const { data, error } = await this.supabase
       .from('tasks')
@@ -129,5 +129,5 @@ export class SupabaseService {
 
     return true;
   }
-  */
+
 }
