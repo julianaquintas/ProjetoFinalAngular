@@ -1,7 +1,7 @@
 {
     "users": [
-        {"id": 1, "name": "Maria"},
-        {"id": 2, "name": "Joana"}
+        {"email": "maria@email.com", "name": "Maria", "password": "123456"},
+        {"email": "joana@email.com", "name": "Joana", "password": "password"}
     ],
     "subjects": [
         {"name":"Political Economy","credits":5},
