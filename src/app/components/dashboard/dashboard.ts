@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import {Task, TaskPriority } from '../../models/task';
 import { Header } from '../header/header';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, RouterModule  } from '@angular/router';
 import { DataServices } from '../../services/data-services';
 import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [Header, RouterOutlet, RouterLink, DatePipe],
+  imports: [Header, RouterOutlet, RouterLink, DatePipe, RouterModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

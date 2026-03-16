@@ -1,4 +1,4 @@
-<app-header [titulo]="'Create accoun'"></app-header> 
+<app-header [titulo]="'Create account'"></app-header> 
 <form [formGroup]="form" id="register-form">
     <input formControlName="name" type="text" placeholder="Name">
         @if (form.get('name')?.invalid && form.get('name')?.touched)
@@ -12,6 +12,11 @@
             <p>Please add a name!</p>
         }
     <br>
+         <input formControlName="password" type="password" placeholder="Passworf">
+        @if (form.get('password')?.invalid && form.get('password')?.touched)
+        {
+            <p>Please add a password!</p>
+        }
     <div>
         <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
         <button [routerLink]="'/tasklist'">Cancel</button>

@@ -2,7 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header } from '../header/header';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { UserModel } from '../../models/UserModel';
+//import { UserModel } from '../../models/UserModel';
+import { UserServices } from '../../services/user-services';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { UserModel } from '../../models/UserModel';
 })
 export class Login implements OnInit {
   private router = inject(Router);
+  private userServices = inject(UserServices);
  
   form!: FormGroup;
 
@@ -28,8 +30,19 @@ export class Login implements OnInit {
       const _password = this.form.get('password')?.value;
 
       if (_email && _password) {
+      /*  try {
+          const foundUser = this.userServices.getUsers()
+        }
         const foundUser = 
+        */
       }
     }
   }
-  }
+}
+
+// async function findUser(email:string, passsword:string): boolean
+// {
+//  try {
+//     const foundUser:UserModel = this.userServices.getUsers()
+//  }
+// }

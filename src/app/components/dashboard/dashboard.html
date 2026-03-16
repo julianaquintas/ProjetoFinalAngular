@@ -40,16 +40,19 @@
         </div>
     </div>
     <div style="text-align: center;">
+        
         @if (thereAreSubjects())
         {
             <p></p>
-            <button routerLink="/tasklist">See all tasks</button>
+            <button type="button" [routerLink]="'/tasklist'">See all tasks</button>
         }
         @else
         {
             <p>There are no subjects!</p>
-             <button routerLink="/add-subject">Add subjects</button>
+            <button type="button" [routerLink]="'/add-subject'">Add subjects</button>
         }
+        <br>
+        <button type="button" [routerLink]="'/login'">Login</button>
     </div>   
 </div>
-<router-outlet />
+<a routerLink="/login">LOGIN TEST</a>
