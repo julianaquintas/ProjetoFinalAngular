@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Tasklist } from './components/tasklist/tasklist';
 import { Options } from './components/options/options';
 import { Dashboard } from './components/dashboard/dashboard';
-import { environment } from '../environments/environment.development';
+//import { environment } from '../environments/environment.development';
 
 
 @Component({
