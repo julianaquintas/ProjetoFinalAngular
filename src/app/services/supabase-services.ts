@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, Session, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 import { Task } from '../models/task';
 import { UserModel } from '../models/UserModel';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
 providedIn: 'root'
@@ -10,11 +11,39 @@ providedIn: 'root'
 
 export class SupabaseService {
   private supabase: SupabaseClient;
+  private _session = new BehaviorSubject<Session | null>(null);
+  session$ = this._session.asObservable();
+
   constructor() {
     this.supabase = createClient(
     environment.supabaseUrl,
     environment.supabaseKey
-    );
+  );
+
+    this.supabase.auth.getSession().then(({ data }) => {
+      this._session.next(data.session);
+    });
+
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth mudou:', event);
+      this._session.next(session); 
+    });
+}
+
+ async signIn(email: string, password: string) {
+    const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
+    return { data, error };
+  }
+
+async signOut() {
+    console.log("signOut called");
+    const { error } = await this.supabase.auth.signOut();
+    
+    return { error };
+  }
+
+  get client(): SupabaseClient {
+    return this.supabase;
   }
 
    async getUsers(): Promise<UserModel[]> {
@@ -72,9 +101,7 @@ export class SupabaseService {
 
     return true;
   }
-
-
-
+  
   async getTasks(): Promise<Task[]> {
     const { data, error } = await this.supabase
       .from('tasks')

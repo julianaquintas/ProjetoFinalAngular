@@ -1,5 +1,13 @@
 <div class="header-top">
     <button class="options-btn" [routerLink]="'/dashboard'">Home</button>
     <h1>{{ titulo }}</h1>
-    <button class="options-btn" [routerLink]="'/options'">Options</button>
+    @if(loggedIn())
+    {
+        <button class="options-btn" [routerLink]="'/options'">Options</button>
+    }
+    @else
+    {
+        <button class="options-btn" [routerLink]="'/login'">Login</button>
+    }
+
 </div>

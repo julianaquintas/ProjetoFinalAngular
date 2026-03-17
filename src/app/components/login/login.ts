@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Header } from '../header/header';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 //import { UserModel } from '../../models/UserModel';
-import { UserServices } from '../../services/user-services';
+import { SupabaseService } from '../../services/supabase-services';
 
 @Component({
   selector: 'app-login',
@@ -13,36 +13,36 @@ import { UserServices } from '../../services/user-services';
 })
 export class Login implements OnInit {
   private router = inject(Router);
-  private userServices = inject(UserServices);
+  private supabaseService = inject(SupabaseService)
  
   form!: FormGroup;
+  errorMessage = ""
 
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', Validators.required),
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.form.valid) {
       const _email = this.form.get('email')?.value;
       const _password = this.form.get('password')?.value;
 
       if (_email && _password) {
-      /*  try {
-          const foundUser = this.userServices.getUsers()
+        const { data, error } = await this.supabaseService.signIn(_email, _password);
+
+        if (error) {
+          this.errorMessage = error.message;
+          return;
         }
-        const foundUser = 
-        */
+
+         console.log('User logged in:', data.user);
+         setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+          }, 50);
       }
     }
   }
 }
-
-// async function findUser(email:string, passsword:string): boolean
-// {
-//  try {
-//     const foundUser:UserModel = this.userServices.getUsers()
-//  }
-// }

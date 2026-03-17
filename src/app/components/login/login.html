@@ -5,9 +5,10 @@
     <label for="email"><b>Email</b></label>
     <input type="email" placeholder="Enter email" formControlName="email" required>
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="passwrod" required>
-    <button type="submit">Login</button>
-    <a [routerLink]="'/tasklist'">No account? Register</a>
+    <input type="password" placeholder="Enter Password" formControlName="password" required>
+    <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Login</button> 
+    <p>{{errorMessage}}</p>
+    <a [routerLink]="'/register'">No account? Register</a>
   </div>
 </form>
 
