@@ -17,6 +17,7 @@ export class Dashboard {
 
   loadPriorityTasks() : Task[]
   {
+    console.log("load priority tasks");
     return this.dataService.getTasks().filter(t => t.priority === TaskPriority.HIGH && t.done === false);
   }
 
