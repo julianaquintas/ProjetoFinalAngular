@@ -88,6 +88,11 @@ async signOut() {
     return data as UserModel;
   }
 
+  async getSession() {
+  const { data: { session } } = await this.supabase.auth.getSession();
+  return session; // retorna null se não houver sessão
+}
+
   async updateUser(user: UserModel): Promise<UserModel | null> {
     const { data, error } = await this.supabase
       .from('users')

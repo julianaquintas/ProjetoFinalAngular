@@ -43,7 +43,7 @@ async onSubmit() {
        setTimeout(() => {
           this.router.navigate(['/dashboard']);
           }, 50);
-      console.log(result);j
+      console.log(result);
     } catch (error) {
       this.message = 'Erro no resgisto';
     }
