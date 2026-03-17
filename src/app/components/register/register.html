@@ -1,24 +1,36 @@
 <app-header [titulo]="'Create account'"></app-header> 
 <form [formGroup]="form" id="register-form">
+    <label for="name"><b>Name</b></label>
     <input formControlName="name" type="text" placeholder="Name">
         @if (form.get('name')?.invalid && form.get('name')?.touched)
         {
             <p>Please add a name!</p>
         }
     <br>
+    <label for="email"><b>Email</b></label>
     <input formControlName="email" type="email" placeholder="Email">
         @if (form.get('email')?.invalid && form.get('email')?.touched)
         {
-            <p>Please add a name!</p>
+            <p>Please add a valid email!</p>
+        }
+        @else
+        {
+            <p> </p>
         }
     <br>
+        <label for="password"><b>Password</b></label>
          <input formControlName="password" type="password" placeholder="Password">
         @if (form.get('password')?.invalid && form.get('password')?.touched)
         {
-            <p>Please add a password!</p>
+            <p>Please add a valid password!</p>
         }
-    <div>
+        @else
+        {
+        <p> </p>
+         }
+    <div style="display:flex; justify-content: space-around;">
         <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
         <button [routerLink]="'/tasklist'">Cancel</button>
+        <p>{{message}}</p>
     </div>
 </form>

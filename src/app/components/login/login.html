@@ -4,8 +4,24 @@
   <div class="container">
     <label for="email"><b>Email</b></label>
     <input type="email" placeholder="Enter email" formControlName="email" required>
+     @if (form.get('email')?.invalid && form.get('email')?.touched)
+      {
+          <p>Please add valid a email!</p>
+      }
+      @else
+      {
+        <p> </p>
+      }
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" formControlName="password" required>
+    @if (form.get('password')?.invalid && form.get('password')?.touched)
+    {
+        <p>Please add a valid password!</p>
+    }
+    @else
+    {
+      <p> </p>
+    }
     <button type="submit" (click)="onSubmit()" [disabled]="form.invalid">Login</button> 
     <p>{{errorMessage}}</p>
     <a [routerLink]="'/register'">No account? Register</a>

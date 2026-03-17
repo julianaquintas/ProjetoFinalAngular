@@ -6,6 +6,8 @@ import { UserModel } from '../../models/UserModel';
 import { RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header } from '../header/header';
+import { SupabaseClient } from '@supabase/supabase-js';
+import { SupabaseService } from '../../services/supabase-services';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,9 @@ import { Header } from '../header/header';
 })
 export class Register implements OnInit{
  private router =  inject(Router);
+ private supabaseService = inject(SupabaseService)
  form!: FormGroup;
+ message = "";
 
  ngOnInit() {
     this.form = new FormGroup({
@@ -26,16 +30,26 @@ export class Register implements OnInit{
   }
 
 
-onSubmit() {
+async onSubmit() {
+  this.message = "";
   if (this.form.valid)
   {
-    console.log("Great!")
-  }
-  else {
-      alert("Please, fill the form correctly.");
+    const _name:string = this.form.get('name')?.value;
+    const _email:string = this.form.get('email')?.value;
+    const _password:string = this.form.get('password')?.value;
+    try {
+      const result = await this.supabaseService.signUp(_name, _email, _password);
+      this.message = 'Registo feito com sucesso! Verifica o email para confirmar.';
+       setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+          }, 50);
+      console.log(result);j
+    } catch (error) {
+      this.message = 'Erro no resgisto';
     }
   }
-}
+
+
 async function createUser(user:UserModel)
 {
 
@@ -50,4 +64,6 @@ async function createUser(user:UserModel)
   const data = await response.json();
   console.log(data);
 }
- 
+
+}
+}

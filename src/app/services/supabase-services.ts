@@ -42,6 +42,23 @@ async signOut() {
     return { error };
   }
 
+   async signUp(name: string, email: string, password: string) {
+    const { data, error } = await this.supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: name }
+      }
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  }
+
+
   get client(): SupabaseClient {
     return this.supabase;
   }
