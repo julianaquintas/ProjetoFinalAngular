@@ -80,7 +80,7 @@ export class DataServices {
 
   public subjectHasTasks(subjectName:string): boolean
   {
-    return this.getTasks().some(t => t.subject.name === subjectName);
+    return this.getTasks().some(t => t.subject_name === subjectName);
   }
   public deleteSubject(subjectName:string)
   {
