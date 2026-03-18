@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Task, TaskPriority, TaskSubject } from '../../models/task';
 import { Header } from '../header/header';
@@ -19,8 +19,10 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 })
 
 export class Taskform implements OnInit {
-  constructor(private dataService: DataServices, private router: Router) {}
 
+  private dataService = inject(DataServices);
+  private router = inject(Router)
+ 
   readonly startDate = new Date();
   priorities = Object.values(TaskPriority);
   subjects: TaskSubject[] = [];

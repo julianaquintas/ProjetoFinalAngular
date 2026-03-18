@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {Task, TaskPriority } from '../../models/task';
 import { Header } from '../header/header';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -13,10 +13,8 @@ import { DatePipe } from '@angular/common';
 })
 
 export class Dashboard {
-    constructor(private dataService: DataServices) {
-   
-  }
-  
+  private dataService = inject(DataServices)
+
   loadPriorityTasks() : Task[]
   {
     return this.dataService.getTasks().filter(t => t.priority === TaskPriority.HIGH && t.done === false);
@@ -28,7 +26,7 @@ export class Dashboard {
 
   loadDueTasks(): Task[]
   {
-    let tasks = this.dataService.getTasks().filter(t => this.isToday(t.dueDate) && t.done === false);
+    const tasks = this.dataService.getTasks().filter(t => this.isToday(t.dueDate) && t.done === false);
     return tasks;
   }
 
