@@ -58,6 +58,18 @@ jobs:
           supabaseKey: '${SUPABASE_ANON_KEY}'
           };
           EOF
+      - name: Generate environment.production
+        run: |
+          mkdir -p src/environments
+          cat > src/environments/environment.production.ts <<EOF
+          export const environment = {
+          production: true,
+          apiUrl: "http://localhost:3001",
+          supabaseUrl: '${SUPABASE_URL}',
+          supabaseKey: '${SUPABASE_ANON_KEY}'
+          };
+          EOF
+          
       - name: Executar lint
         run: npm run lint
 
