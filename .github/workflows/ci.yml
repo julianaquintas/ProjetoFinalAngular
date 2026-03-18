@@ -54,8 +54,8 @@ jobs:
           export const environment = {
           production: false,
           apiUrl: "http://localhost:3001",
-          supabaseUrl: '${SUPABASE_URL}',
-          supabaseKey: '${SUPABASE_ANON_KEY}'
+          supabaseUrl: '${secrets.SUPABASE_URL}',
+          supabaseKey: '${secrets.SUPABASE_ANON_KEY}'
           };
           EOF
       - name: Generate environment.production
@@ -65,8 +65,8 @@ jobs:
           export const environment = {
           production: true,
           apiUrl: "http://localhost:3001",
-          supabaseUrl: '${SUPABASE_URL}',
-          supabaseKey: '${SUPABASE_ANON_KEY}'
+          supabaseUrl: '${secrets.SUPABASE_URL}',
+          supabaseKey: '${secrets.SUPABASE_ANON_KEY}'
           };
           EOF
           
