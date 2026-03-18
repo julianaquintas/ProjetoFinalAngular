@@ -41,11 +41,23 @@ jobs:
           cat > src/environments/environment.ts <<EOF
           export const environment = {
           production: true,
+          apiUrl: "http://localhost:3001",
           supabaseUrl: '${SUPABASE_URL}',
           supabaseKey: '${SUPABASE_ANON_KEY}'
           };
           EOF
 
+      - name: Generate environment.development
+        run: |
+          mkdir -p src/environments
+          cat > src/environments/environment.development.ts <<EOF
+          export const environment = {
+          production: false,
+          apiUrl: "http://localhost:3001",
+          supabaseUrl: '${SUPABASE_URL}',
+          supabaseKey: '${SUPABASE_ANON_KEY}'
+          };
+          EOF
       - name: Executar lint
         run: npm run lint
 
