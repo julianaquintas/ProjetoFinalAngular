@@ -13,8 +13,8 @@
   @for (task of loadTasks(); track task.description) {
     <div class="task-post">
       <p>@if(task.priority === "High"){‼️} @else if (task.priority === "Medium") {❗} @else {❕} {{task.description}}<p>
-      <p>Subject: {{task.subject.name}}</p>
-      <p>Due: {{task.dueDate | date:'fullDate' }}</p>
+      <p>Subject: {{task.subject_name}}</p>
+      <p>Due: {{task.due_date | date:'fullDate' }}</p>
       <button [routerLink]="['/detail', task.id]">More Details</button>
     </div>
   }

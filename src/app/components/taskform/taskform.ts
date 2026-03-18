@@ -46,14 +46,15 @@ export class Taskform implements OnInit {
       const _dueDate = this.form.get('dueDate')?.value;
       const _priority = this.form.get('priority')?.value;
 
-      const _subject = this.subjects.find(x => x.name === _subjectName);
+      //const _subject = this.subjects.find(x => x.name === _subjectName);
 
-      if (_description && _subject && _dueDate && _priority) {
+      if (_description && _subjectName && _dueDate && _priority) {
         const newTask: Task = {
           id: Date.now(),
           description: _description,
-          subject: _subject,
-          dueDate: new Date(_dueDate),
+          subject_name: _subjectName,
+          due_date: new Date(_dueDate),
+          created_at: new Date(Date.now()),
           priority: _priority as TaskPriority,
           done: false
         };
