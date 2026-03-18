@@ -40,9 +40,9 @@ jobs:
           mkdir -p src/environments
           cat > src/environments/environment.ts <<EOF
           export const environment = {
-            production: true,
-            supabaseUrl: '${SUPABASE_URL}',
-            supabaseKey: '${SUPABASE_ANON_KEY}'
+          production: true,
+          supabaseUrl: '${ secrets.SUPABASE_URL }',
+          supabaseKey: '${ SUPABASE_ANON_KEY }'
           };
           EOF
 
