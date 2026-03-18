@@ -58,8 +58,8 @@ jobs:
           supabaseKey: '${SUPABASE_ANON_KEY}'
           };
           EOF
-      #- name: Executar lint
-       # run: npm run lint
+      - name: Executar lint
+        run: npm run lint
 
       - name: Executar build
         run: npm run build
