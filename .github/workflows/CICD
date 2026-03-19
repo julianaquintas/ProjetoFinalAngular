@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - dev
+      - feature/ci-pipeline
 
 jobs:
   build:
