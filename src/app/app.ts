@@ -15,7 +15,7 @@ import { Dashboard } from './components/dashboard/dashboard';
 export class App {
   protected readonly title = signal('Study Manager');
   
-  let _error = 3;
+  
   fazerLogout()
   {
     alert("O utilizador fez logout!");
