@@ -1,24 +1,19 @@
-name: CI
+name: CI + Vercel Deployment
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
-   #   - dev
-    #  - feature/ci-pipeline
-  workflow_dispatch:
+      - dev
+      - feature/ci-pipeline
 
 jobs:
-  build-and-lint:
+  build:
     runs-on: ubuntu-latest
-
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -70,5 +65,49 @@ jobs:
       - name: Executar lint
         run: npm run lint
 
-      - name: Executar build
-        run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Generate environments (again, for Vercel)
+        run: |
+          mkdir -p src/environments
+
+          cat > src/environments/environment.ts <<EOF
+          export const environment = {
+            production: true,
+            apiUrl: "http://localhost:3001",
+            supabaseUrl: "$SUPABASE_URL",
+            supabaseKey: "$SUPABASE_ANON_KEY"
+          };
+          EOF
+
+          cat > src/environments/environment.production.ts <<EOF
+          export const environment = {
+            production: true,
+            apiUrl: "http://localhost:3001",
+            supabaseUrl: "$SUPABASE_URL",
+            supabaseKey: "$SUPABASE_ANON_KEY"
+          };
+          EOF
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Deploy Project to Vercel
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
