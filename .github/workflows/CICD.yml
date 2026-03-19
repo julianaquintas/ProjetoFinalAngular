@@ -1,10 +1,10 @@
 name: CI + Vercel Deployment
 
-# Só roda em merges/push para a branch dev
 on:
   push:
     branches:
       - dev
+      - feature/ci-pipeline
 
 jobs:
   build:
