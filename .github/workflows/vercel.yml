@@ -5,8 +5,8 @@ env:
 on:
   push:
     branches:
-      - dev
-      - feature/ci-pipeline
+     # - dev
+     # - feature/ci-pipeline
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
