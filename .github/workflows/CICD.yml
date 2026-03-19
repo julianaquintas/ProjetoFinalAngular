@@ -1,11 +1,10 @@
 name: CI + Vercel Deployment
 
-# Dispara apenas quando houver merge/push para a branch dev
+# Só roda em merges/push para a branch dev
 on:
   push:
     branches:
       - dev
-      - feature/ci-pipeline
 
 jobs:
   build:
@@ -69,9 +68,8 @@ jobs:
       - name: Executar build
         run: npm run build
 
-      # Guarda os artefactos do Angular build para o deploy
       - name: Upload dist folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: angular-dist
           path: dist/
@@ -85,9 +83,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Baixa os artefactos buildados
       - name: Download dist folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: angular-dist
           path: dist/
