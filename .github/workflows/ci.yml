@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - feature/ci-pipeline
   workflow_dispatch:
 
 jobs:
