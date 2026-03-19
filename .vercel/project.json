@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_PllZl89WKDPArs0IbeAItesATTzT",
+  "orgId": "team_8pqbuJb79VuNZvzCnb9o3vRB",
+  "projectName": "study-manager",
+  "settings": {
+    "createdAt": 1773851733272,
+    "framework": "angular",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
