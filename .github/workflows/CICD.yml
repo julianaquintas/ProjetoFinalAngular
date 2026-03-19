@@ -1,24 +1,19 @@
-name: CI
+name: CI + Vercel Deployment
 
+# Só roda em merges/push para a branch dev
 on:
-  pull_request:
+  push:
     branches:
-      - main
-   #   - dev
-    #  - feature/ci-pipeline
-  workflow_dispatch:
+      - dev
 
 jobs:
-  build-and-lint:
+  build:
     runs-on: ubuntu-latest
-
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -72,3 +67,30 @@ jobs:
 
       - name: Executar build
         run: npm run build
+
+      - name: Upload dist folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-dist
+          path: dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download dist folder
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-dist
+          path: dist/
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
