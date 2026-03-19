@@ -44,10 +44,4 @@ __screenshots__/
 Thumbs.db
 
 # Environment variables
-/app/environments/
-src/environments/environment.development.ts
-src/environments/environment.production.ts
-src/environments/environment.ts
-.angular.zip
 
-.vercel

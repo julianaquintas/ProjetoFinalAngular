@@ -1,0 +1,14 @@
+{
+    "users": [
+        {"email": "maria@email.com", "name": "Maria", "password": "123456"},
+        {"email": "joana@email.com", "name": "Joana", "password": "password"}
+    ],
+    "subjects": [
+        {"name":"Political Economy","credits":5},
+        {"name":"Political Philosphy","credits":5}
+    ], 
+    "tasks": [
+        {"id":1772789040935,"description":"Draw Graphs","subject":{"name":"Political Economy","credits":5},"dueDate":"2026-03-11T00:00:00.000Z","priority":"Low","done":false},
+        {"id":1772723436064,"description":"Read Kant","subject":{"name":"Political Philosphy","credits":5},"dueDate":"2026-03-27T00:00:00.000Z","priority":"Medium","done":false}
+    ]
+}

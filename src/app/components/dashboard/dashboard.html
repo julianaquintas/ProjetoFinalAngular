@@ -6,7 +6,7 @@
             <ul>
                 @for (task of loadPriorityTasks(); track task.description)
                 {
-                    <li>{{task.description}} for {{task.subject.name}}</li>
+                    <li><a [routerLink]="['/detail', task.id]">{{task.description}}</a></li>
                 }   
                 @empty
                 {
@@ -19,7 +19,7 @@
             <ul>
                 @for (task of loadDueTasks(); track task.description)
                 {
-                    <li>{{task.description}} for {{task.subject.name}}</li>
+                    <li><a [routerLink]="['/detail', task.id]">{{task.description}}</a></li>
                 }    
                 @empty
                 {
@@ -39,17 +39,32 @@
             </div>
         </div>
     </div>
-    <div style="text-align: center;">
-        @if (thereAreSubjects())
-        {
-            <p></p>
-            <button routerLink="/tasklist">See all tasks</button>
+    <div style="text-align: center; margin:50px">
+        
+        @if (loggedIn()) {
+            @if (thereAreSubjects())
+            {
+                <p></p>
+                <button type="button" [routerLink]="'/tasklist'">See all tasks</button>
+            }
+            @else
+            {
+                <p>There are no subjects!</p>
+                <button type="button" [routerLink]="'/add-subject'">Add subjects</button>
+            }
+
+            <br>
+            <br>
+            <!--p>Olá, {{ }}</p>
+            <br>
+            <br-->
+            <button type="button" (click)="logout()">Log out</button>
         }
         @else
         {
-            <p>There are no subjects!</p>
-             <button routerLink="/add-subject">Add subjects</button>
+            <p>Log in to view and edit task</p>
+             <button type="button" [routerLink]="'/login'">Login</button>
         }
+        
     </div>   
 </div>
-<router-outlet />
